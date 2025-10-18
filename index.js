@@ -5,7 +5,24 @@ import cors from "cors";
 const app = express();
 const PORT = 5000;
 app.use(express.json());
-app.use(cors());
+app.use(express.json());
+const allowedOrigins = [
+  // "https://securitydashboardinfo.netlify.app", // Your deployed frontend URL
+  "http://localhost:5173", // Local development URL
+];
+
+const corsOptions = {
+  origin: (origin, callback) => {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+  credentials: true, // Enable cookies if needed
+};
+
+app.use(cors(corsOptions));
 
 app.get("/", (req, res) => {
   res.send("Hello from Backend");
