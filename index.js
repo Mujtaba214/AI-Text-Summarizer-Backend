@@ -7,7 +7,7 @@ const PORT = 5000;
 app.use(express.json());
 app.use(express.json());
 const allowedOrigins = [
-  "https://ai-paragraph-summarizer.netlify.app/", // Your deployed frontend URL
+  "https://ai-paragraph-summarizer.netlify.app", // Your deployed frontend URL
   "http://localhost:5173", // Local development URL
 ];
 
